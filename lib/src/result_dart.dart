@@ -76,6 +76,15 @@ sealed class Result<T, E> {
     Failure(:final error) => onFailure(error),
   };
 
+  /// Async version of [fold]
+  Future<R> foldAsync<R>(
+    Future<R> Function(T) onSuccess,
+    Future<R> Function(E) onFailure,
+  ) => switch (this) {
+    Ok(:final value) => onSuccess(value),
+    Failure(:final error) => onFailure(error),
+  };
+
   /// Runs [action] if this is [Ok]; returns `this` for chaining.
   Result<T, E> onSuccess(void Function(T) action) {
     if (this case Ok(:final value)) action(value);
