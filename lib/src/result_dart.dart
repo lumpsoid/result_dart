@@ -6,9 +6,6 @@ import 'package:result_dart/src/deep_equality.dart';
 
 /// A discriminated union representing either a success ([Ok]) or a failure
 /// ([Failure]).
-///
-/// All instance methods use Dart 3 `switch` exhaustive pattern-matching — no
-/// runtime `is`/`as` casts survive.
 sealed class Result<T, E> {
   const Result();
 
