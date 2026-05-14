@@ -355,6 +355,10 @@ extension FutureResultExtension<T, E> on Future<Result<T, E>> {
     void Function(E)? onFailure,
   ]) async => (await this).onTap(onSuccess, onFailure);
 
+  /// Returns the value of the awaited result, or throws [ResultException] if
+  /// this is a [Failure].
+  Future<T> getOrThrow() async => (await this).getOrThrow();
+
   /// Returns the value of the awaited result, or [defaultValue] if it is a
   /// [Failure].
   Future<T> getOrDefault(T defaultValue) async =>
